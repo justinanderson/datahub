@@ -237,12 +237,10 @@ LOGGING = {
 # Instances should create a local_settings.py to define custom settings.
 try:
     from local_settings import *
-except ImportError:
-    from default_settings import *
-
-try:
     from site_utils import set_site_info
     set_site_info(domain=DATAHUB_DOMAIN)
+except ImportError:
+    from default_settings import *
 except OperationalError:
     # DB access fails during docker build. Ignore that here so the
     # collectstatic call will succeed.
