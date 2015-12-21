@@ -26,6 +26,9 @@ services:
 
 before_script:
   - psql -c "create database datahub;" -U postgres
+  - python manage.py makemigrations
+  - python manage.py migrate sites --noinput
+  - python manage.py makemigrations
   - python manage.py migrate --noinput
 
 script: 
