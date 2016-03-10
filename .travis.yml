@@ -1,18 +1,14 @@
-sudo: false
+sudo: true
 dist: trusty
 language: python
 python: "2.7"
 
-addons:
-  apt:
-    packages:
-    - thrift-compiler
-  # postgresql: "9.4"
-
-# before_install:
-#   - sudo mkdir /user_data
-#   - sudo chmod -R 777 /user_data/
-#   - whoami
+before_install:
+  - sudo apt-get update -qq
+  - sudo apt-get install thrift-compiler
+  - sudo mkdir /user_data
+  - sudo chmod -R 777 /user_data/
+  - whoami
 
 install:
   - thrift --version
@@ -21,15 +17,21 @@ install:
   - python src/scripts/generate_secret_key.py
   - cd src
 
-# before_script:
-#   - psql -c "create database datahub;" -U postgres
+addons:
+  postgresql: "9.4"
 
-# script: 
-#   - python manage.py test inventory  # tests models
-#   - python manage.py test www        # tests home page
-#   - python manage.py test account    # tests account management views
-#   - python manage.py test browser    # tests datahub core views
-#   - python manage.py test core       # tests datahub core database access
-#   # a DB problem requires the Functional Tests to be run seperately
-#   # - python manage.py test functional_tests.test_login_auth
-#   # - python manage.py test functional_tests.test_layout_and_styling
+services:
+  - postgresql
+
+before_script:
+  - psql -c "create database datahub;" -U postgres
+
+script: 
+  - python manage.py test inventory  # tests models
+  - python manage.py test www        # tests home page
+  - python manage.py test account    # tests account management views
+  - python manage.py test browser    # tests datahub core views
+  - python manage.py test core       # tests datahub core database access
+  # a DB problem requires the Functional Tests to be run seperately
+  # - python manage.py test functional_tests.test_login_auth
+  # - python manage.py test functional_tests.test_layout_and_styling
