@@ -12,10 +12,10 @@ before_install:
 
 install:
   - thrift --version
-  - source src/setup.sh
-  - pip install -r requirements.txt
-  - python src/scripts/generate_secret_key.py
-  - cd src
+  # - source src/setup.sh
+  # - pip install -r requirements.txt
+  # - python src/scripts/generate_secret_key.py
+  # - cd src
 
 addons:
   postgresql: "9.4"
