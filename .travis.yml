@@ -6,6 +6,7 @@ addons:
   apt:
     packages:
     - thrift-compiler
+  postgresql: "9.4"
 
 # before_install:
 #   - sudo mkdir /user_data
@@ -18,12 +19,6 @@ install:
   - pip install -r requirements.txt
   - python src/scripts/generate_secret_key.py
   - cd src
-
-addons:
-  postgresql: "9.4"
-
-services:
-  - postgresql
 
 before_script:
   - psql -c "create database datahub;" -U postgres
