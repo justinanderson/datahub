@@ -14,26 +14,26 @@ before_install:
 
 install:
   - thrift --version
-  - source src/setup.sh
-  - pip install -r requirements.txt
-  - python src/scripts/generate_secret_key.py
-  - cd src
+  # - source src/setup.sh
+  # - pip install -r requirements.txt
+  # - python src/scripts/generate_secret_key.py
+  # - cd src
 
-addons:
-  postgresql: "9.4"
+# addons:
+#   postgresql: "9.4"
 
-services:
-  - postgresql
+# services:
+#   - postgresql
 
-before_script:
-  - psql -c "create database datahub;" -U postgres
+# before_script:
+#   - psql -c "create database datahub;" -U postgres
 
-script: 
-  - python manage.py test inventory  # tests models
-  - python manage.py test www        # tests home page
-  - python manage.py test account    # tests account management views
-  - python manage.py test browser    # tests datahub core views
-  - python manage.py test core       # tests datahub core database access
+# script: 
+#   - python manage.py test inventory  # tests models
+#   - python manage.py test www        # tests home page
+#   - python manage.py test account    # tests account management views
+#   - python manage.py test browser    # tests datahub core views
+#   - python manage.py test core       # tests datahub core database access
   # a DB problem requires the Functional Tests to be run seperately
   # - python manage.py test functional_tests.test_login_auth
   # - python manage.py test functional_tests.test_layout_and_styling
