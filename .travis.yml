@@ -3,9 +3,13 @@ dist: trusty
 language: python
 python: "2.7"
 
+addons:
+  postgresql: "9.4"
+  apt:
+    packages:
+      - thrift-compiler
+
 before_install:
-  - sudo apt-get update -qq
-  - sudo apt-get install -y thrift-compiler
   - sudo mkdir /user_data
   - sudo chmod -R 777 /user_data/
 
@@ -15,8 +19,6 @@ install:
   - python src/scripts/generate_secret_key.py
   - cd src
 
-addons:
-  postgresql: "9.4"
 
 before_script:
   - psql -c "create database datahub;" -U postgres
