@@ -4,7 +4,7 @@ python: "2.7"
 
 before_install:
   - sudo apt-get update -qq
-  - sudo apt-get install libboost-dev libboost-test-dev libboost-program-options-dev libboost-system-dev libboost-filesystem-dev libevent-dev automake libtool flex bison pkg-config g++ libssl-dev ant default-jdk
+  - sudo apt-get install libc6 libgcc1 libstdc++6 libboost-dev libboost-test-dev libboost-program-options-dev libboost-system-dev libboost-filesystem-dev libevent-dev automake libtool flex bison pkg-config g++ libssl-dev ant default-jdk
   - travis_retry wget http://http.us.debian.org/debian/pool/main/t/thrift-compiler/thrift-compiler_0.9.1-2_amd64.deb -O thrift-compiler.deb
   - sudo dpkg -i thrift-compiler.deb
   - sudo mkdir /user_data
