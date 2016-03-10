@@ -5,7 +5,7 @@ python: "2.7"
 addons:
   apt:
     packages:
-    - thrift-compiler
+    - wget
   postgresql: "9.4"
 
 # before_install:
