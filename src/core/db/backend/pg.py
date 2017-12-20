@@ -393,16 +393,9 @@ class PGBackend:
     def create_view(self, repo, view, sql):
         self._check_for_injections(repo)
         self._validate_table_name(view)
-        query = (
-                'BEGIN;'
-                'DROP VIEW IF EXISTS %s.%s;'
-                'CREATE VIEW %s.%s AS (%s);'
-                'COMMIT;')
+        query = ('CREATE VIEW %s.%s AS (%s)')
 
-        params = (
-                AsIs(repo), AsIs(view),
-                AsIs(repo), AsIs(view),
-                AsIs(sql))
+        params = (AsIs(repo), AsIs(view), AsIs(sql))
 
         res = self.execute_sql(query, params)
 
